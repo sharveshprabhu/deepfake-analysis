@@ -1,0 +1,27 @@
+{
+  "module": "visual_ai",
+  "evidence_id": "TL-2026-0001",
+  "visual_score": 0.94,
+  "frequency_score": 0.89,
+  "suspicious_frames": [14, 15, 16],
+  "regions": [
+    {
+      "frame_index": 14,
+      "box": [120, 85, 240, 210],
+      "label": "facial_boundary_distortion",
+      "anomaly_score": 0.95
+    },
+    {
+      "frame_index": 15,
+      "box": [122, 86, 242, 212],
+      "label": "texture_smoothing_anomaly",
+      "anomaly_score": 0.92
+    }
+  ],
+  "heatmap_filename": "TL-2026-0001_heatmap.png",
+  "explanations": [
+    "Facial boundary blending artifacts detected in frames 14-16",
+    "High-frequency discrete cosine transform anomaly in cheek and jaw regions (89%)"
+  ],
+  "status": "SUCCESS"
+}

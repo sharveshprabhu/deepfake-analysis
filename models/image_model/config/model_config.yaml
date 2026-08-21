@@ -1,0 +1,27 @@
+# TruthLens Visual AI Model Release Configuration (v2.0)
+
+model:
+  name: "truthlens_dinov2_forensic_net"
+  backbone: "dinov2_vits14"
+  noise_stream: "bayar_constrained_conv"
+  fusion_type: "spatial_cross_attention"
+  decoder: "dense_mask_decoder"
+  input_size: [252, 252]
+  device: "cuda"  # Auto falls back to "cpu" if CUDA is unavailable
+
+checkpoints:
+  primary_weights: "checkpoints/truthlens_dinov2_model.pth"
+  fallback_weights: "checkpoints/truthlens_sota_model.pth"
+
+inference:
+  batch_size: 1
+  manipulation_threshold: 0.40
+  mask_threshold: 0.50
+  illumination_angle_threshold_deg: 35.0
+  ela_quality: 90
+  ela_scale: 15.0
+  max_detected_regions: 4
+
+storage:
+  heatmap_output_dir: "storage/heatmaps"
+  default_evidence_prefix: "TL-2026-AUTO"

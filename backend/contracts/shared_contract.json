@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TruthLensSharedContract",
+  "description": "Frozen JSON contract between AI modules, Backend, and Frontend for TruthLens",
+  "input_contract": {
+    "evidence_id": "TL-2026-0001",
+    "file_path": "storage/uploads/TL-2026-0001_sample_video.mp4",
+    "media_type": "video"
+  },
+  "output_contract": {
+    "evidence_id": "TL-2026-0001",
+    "verdict": "MANIPULATED",
+    "confidence": 0.937,
+    "visual_score": 0.94,
+    "frequency_score": 0.89,
+    "temporal_score": 0.87,
+    "audio_score": 0.76,
+    "fusion_score": 0.912,
+    "suspicious_frames": [14, 15, 16],
+    "regions": [
+      {
+        "frame_index": 14,
+        "box": [120, 85, 240, 210],
+        "label": "facial_boundary_distortion",
+        "anomaly_score": 0.95
+      }
+    ],
+    "explanations": [
+      "Facial boundary blending distortion detected in frames 14-16",
+      "High-frequency domain spectral artifact anomaly detected (89%)",
+      "Temporal flickering across consecutive facial crops"
+    ],
+    "sha256": "8a91f4b5c7321e8d9047bca899014529fbe92a3489e27cbfd1283995819773c2",
+    "heatmap_url": "/static/heatmaps/TL-2026-0001_heatmap.png",
+    "report_url": "/report/TL-2026-0001",
+    "model_version": "TruthLens v1.0",
+    "analyzed_at": "2026-08-19T14:50:00Z"
+  }
+}

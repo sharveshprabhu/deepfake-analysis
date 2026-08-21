@@ -1,0 +1,48 @@
+# ==============================================================================
+# TruthLens Temporal Deepfake Detection - Standalone Deployment Configuration
+# ==============================================================================
+
+experiment:
+  name: "truthlens_temporal_deployment"
+  device: "cuda" # Safely falls back to "cpu" if CUDA is unavailable
+
+data:
+  sequence_length: 16
+  face_crop_size: 224
+  eval_stride: 2
+
+model:
+  name: "temporal_transformer"
+  visual_backbone: "swin_tiny"
+  backbone: "swin_tiny"
+  backbone_feature_dim: 768
+  feature_dim: 768
+  temporal_architecture: "transformer"
+  temporal_dim: 512
+  temporal_hidden_dim: 512
+  temporal_num_layers: 4
+  num_layers: 4
+  temporal_num_heads: 8
+  num_heads: 8
+  sequence_length: 16
+  stride_range: [1, 4]
+  temporal_dropout: 0.2
+  dropout: 0.2
+  freeze_backbone_epochs: 0
+  device: "cuda"
+
+checkpoints:
+  calibrated_weights: "checkpoints/best_calibrated_model.pth"
+
+paths:
+  checkpoints_dir: "checkpoints"
+  calibrated_checkpoint: "checkpoints/best_calibrated_model.pth"
+
+inference:
+  batch_size: 8
+  window_size: 16
+  sequence_length: 16
+  max_windows: 4
+  stride: 8
+  temperature: 1.619594
+  discontinuity_threshold: 0.45

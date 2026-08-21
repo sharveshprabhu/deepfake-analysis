@@ -1,0 +1,78 @@
+# =====================================================================
+# TruthLens AV-CrossSyncNet: Configuration
+# State-of-the-Art Audio-Visual Lip Synchronization & Forensics Model
+# =====================================================================
+
+project:
+  name: "TruthLens-AV-CrossSyncNet"
+  version: "1.0.0"
+  author: "TruthLens AI Forensics Team (Person 2B)"
+
+paths:
+  lrs3_root: "../LRS3"
+  trainval_dir: "../LRS3/trainval"
+  test_dir: "../LRS3/test"
+  checkpoints_dir: "checkpoints"
+  reports_dir: "reports"
+  logs_dir: "reports/logs"
+
+# Audio stream preprocessing parameters
+audio:
+  sample_rate: 16000
+  n_mels: 80
+  n_fft: 512
+  win_length: 400          # 25ms window @ 16kHz
+  hop_length: 160          # 10ms hop @ 16kHz -> 100 audio frames/sec
+  f_min: 0.0
+  f_max: 8000.0
+  window_frames: 16        # 16 mel frames per 0.2s chunk (covering 5 video frames)
+
+# Video stream preprocessing parameters
+video:
+  fps: 25.0
+  sequence_length: 5       # 5 continuous frames = 0.20s window (matches 16 mel frames)
+  crop_size: 96            # 96x96 mouth ROI crop
+  mouth_region:
+    # Bounding box ratios relative to 224x224 LRS3 face crop [ymin, xmin, ymax, xmax]
+    ymin_ratio: 0.50       # Lower half of face
+    ymax_ratio: 0.95
+    xmin_ratio: 0.20
+    xmax_ratio: 0.80
+
+# Model architecture hyperparameters
+model:
+  feature_dim: 256
+  metric_dim: 128
+  num_cross_attn_heads: 4
+  num_cross_attn_layers: 2
+  dropout: 0.1
+  num_offset_classes: 31   # Shift range [-15, +15] frames (-600ms to +600ms)
+  temperature_init: 0.07   # Initial temperature for InfoNCE loss
+
+# Training hyperparameters
+training:
+  device: "cuda"           # Automatically falls back to cpu if cuda unavailable
+  batch_size: 64
+  num_workers: 0
+  epochs: 15
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  warmup_epochs: 1
+  min_lr: 0.000001
+  mixed_precision: true    # FP16 Automatic Mixed Precision
+  grad_clip_norm: 1.0
+  early_stopping_patience: 4
+  val_split_ratio: 0.10    # 10% of speakers reserved for validation
+  seed: 42
+
+  # Multi-task loss weights
+  loss_weights:
+    infonce: 1.0
+    offset_ce: 0.5
+    alignment: 0.2
+
+# Forensic thresholding & calibration
+forensics:
+  sync_threshold_ms: 60.0  # Offsets > 60ms flagged as suspicious
+  desync_threshold: 0.50   # Anomaly score threshold for "MANIPULATED" flag
+  min_audio_confidence: 0.20

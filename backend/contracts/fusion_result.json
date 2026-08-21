@@ -1,0 +1,15 @@
+{
+  "module": "fusion",
+  "evidence_id": "TL-2026-0001",
+  "fusion_score": 0.912,
+  "confidence": 0.937,
+  "verdict": "MANIPULATED",
+  "weights_used": {
+    "visual": 0.40,
+    "frequency": 0.15,
+    "temporal": 0.30,
+    "audio": 0.15
+  },
+  "verdict_reasoning": "Multi-modal consensus exceeded high-confidence manipulation threshold (91.2% fusion score)",
+  "status": "SUCCESS"
+}

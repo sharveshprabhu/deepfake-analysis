@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Storage & Uploads (Runtime Generated)
+backend/storage/uploads/*
+backend/storage/reports/*
+backend/storage/heatmaps/*
+backend/storage/*.db
+!backend/storage/.gitkeep
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

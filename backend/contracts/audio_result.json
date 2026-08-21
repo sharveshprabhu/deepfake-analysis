@@ -1,0 +1,13 @@
+{
+  "module": "audio_ai",
+  "evidence_id": "TL-2026-0001",
+  "audio_score": 0.76,
+  "has_audio": true,
+  "av_sync_offset_ms": 142.5,
+  "acoustic_artifact_score": 0.74,
+  "explanations": [
+    "Audio-to-visual phoneme/viseme timing lag of 142.5ms detected",
+    "Spectral phase irregularities detected in speech formant synthesis"
+  ],
+  "status": "SUCCESS"
+}
