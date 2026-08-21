@@ -1,0 +1,24 @@
+{
+  "indomain_test_metrics": {
+    "roc_auc": 0.9402,
+    "pr_auc": 0.9404,
+    "accuracy": 0.8738,
+    "precision": 0.8824,
+    "recall": 0.8625,
+    "f1": 0.8723,
+    "eer": 0.1263,
+    "log_loss": 0.338,
+    "loss": 0.068
+  },
+  "cross_dataset_metrics": {
+    "roc_auc": 0.7139,
+    "pr_auc": 0.6252,
+    "accuracy": 0.5166,
+    "precision": 0.5936,
+    "recall": 0.105,
+    "f1": 0.1784,
+    "eer": 0.3381,
+    "log_loss": 0.8106,
+    "loss": 0.2466
+  }
+}
